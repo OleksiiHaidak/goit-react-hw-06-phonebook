@@ -1,8 +1,13 @@
 import { useState } from "react";
 import {nanoid} from 'nanoid';
 import css from 'components/Phonebook/Phonebook.module.css';
+import { useSelector, useDispatch } from "react-redux";
+import { addContact } from "redux/contacts/contacts.reducer";
 
-const ContactForm = ({onAddContact, contacts}) => {
+const ContactForm = () => {
+  
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contactsStore.contacts);
 
   const [name, setName] = useState("")
   const [number, setNumber] = useState("")
@@ -32,7 +37,7 @@ const ContactForm = ({onAddContact, contacts}) => {
       number,
       };
       
-    onAddContact(contact);
+    dispatch(addContact(contact));
     setName("");
     setNumber("");
   };

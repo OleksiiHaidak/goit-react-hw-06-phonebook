@@ -1,8 +1,15 @@
 import React from "react";
 import css from 'components/Phonebook/Phonebook.module.css';
+import { useDispatch } from "react-redux";
+import { deleteContact } from "redux/contacts/contacts.reducer";
 
-const ContactListItem = ({ contact, onDeleteContact }) => {
-  const handleDeleteClick = () => {onDeleteContact(contact.id)};
+const ContactListItem = ({contact}) => {
+
+  const dispatch = useDispatch();
+
+  const handleDeleteClick = () => {
+    dispatch(deleteContact(contact.id));
+  };
 
   return (
     <li key={contact.id} className={css.contactList}>
